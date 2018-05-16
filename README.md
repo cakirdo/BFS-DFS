@@ -54,7 +54,9 @@ connection is used.      //n
 connection is used.      //n 
  
  else if (cities[ right side of edge]>0 AND cities[ left side of edge]<0) //n 
-  REPEAT until cities[right side of edge]<0    //n(n+1)    right side of edge= cities[right side of edge]   //n2   END REPEAT       //n2 
+  REPEAT until cities[right side of edge]<0    //n(n+1)    
+	right side of edge= cities[right side of edge]   //n2   
+  END REPEAT       //n2 
   if(cities[ left side of edge]< cities[ right side of edge])  //n 
    cities[left side of edge] +=cities[right side of edge]  //n 
    cities[right side of edge]=left side of edge    //n 
@@ -67,8 +69,12 @@ connection is used.      //n
  
  
  else          //n 
-  REPEAT until cities[right side of edge]<0    //n(n+1)    right side of edge= cities[right side of edge]   //n2   END REPEAT       //n2 
-  REPEAT until cities[left side of edge]<0    //n(n+1)  left side of edge= cities[left side of edge]   //n2   END REPEAT       //n2 
+  REPEAT until cities[right side of edge]<0    //n(n+1)    
+	right side of edge= cities[right side of edge]   //n2   
+  END REPEAT       //n2 
+  REPEAT until cities[left side of edge]<0    //n(n+1)  
+	left side of edge= cities[left side of edge]   //n2   
+  END REPEAT       //n2 
   if(cities[ left side of edge]< cities[ right side of edge])  //n 
    cities[left side of edge] +=cities[right side of edge]  //n 
    cities[right side of edge]=left side of edge   //n 
@@ -105,7 +111,14 @@ END FOR EACH         //n
 FOR EACH from i=0 to i< city i++       //n+1 
  Delmin=i         //n 
  Smallest = 1000000        //n 
-REPEAT UNTIL central==delmin      //n(n+1)  Used[delmin]true       //n2  İf(one side of edge == delmin)     //n2   Cost[other side]=cost[delmin]+cost[this edge]  //n2  END IF        //n2  Find (the city which has smallest cost AND unused city)  //n2 delmin = smallest city       //n2 END REPEAT        //n2 
+REPEAT UNTIL central==delmin      //n(n+1)  
+	Used[delmin]true       //n2  
+	if(one side of edge == delmin)     //n2   
+		Cost[other side]=cost[delmin]+cost[this edge]  //n2  
+	END IF        //n2  
+	Find (the city which has smallest cost AND unused city)  //n2 
+	delmin = smallest city       //n2 
+  END REPEAT        //n2 
 Total += cost of central       //n 
 END FOR EACH         //n 
 Print total // total cost to head office       //1 
